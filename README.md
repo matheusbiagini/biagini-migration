@@ -15,37 +15,21 @@ Ex: example.php
 
 declare(strict_types=1);
 
-require __DIR__ . '/vendor/autoload.php';
-
-#Data from your database.
-$database = "alice_migration";
-$host = 'mysql';
-$user = 'root';
-$password = '123';
+use AliceMigration\Management\Configuration\Configuration;
+use AliceMigration\Migration\Migration;
 
 #Path where your migration classes will be created
-$pathMigrations = getcwd() . "/src/PathMigrations/";
+$pathMigrations = "/path/";
 
 #Namespace that your migration classes meet, use the path namespace that you previously defined.
-$namespace = 'AliceMigration\PathMigrations';
+$namespace = 'PathNamespace';
 
 #Here it can be customized because the configuration class expects an instance of the PDO
-$configuration = new \AliceMigration\Management\Configuration\Configuration(
-    new \PDO(
-        sprintf("mysql:dbname=%s;host=%s;charset=utf8", $database, $host),
-        $user,
-        $password,
-        [
-            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-        ]
-    ),
-    $pathMigrations,
-    $namespace
-);
+$pdo = new PDO('dblib:host=your_hostname;dbname=your_db;charset=UTF-8', $user, $pass);
 
-$migration = new \AliceMigration\Migration\Migration($configuration);
+#Creating the migration command console
+$migration = new Migration(new Configuration($pdo, $pathMigrations, $namespace));
 $migration->run();
-
 ```
 
 2) Now your newly created file has become a central data migration command, to access the terminal type:
