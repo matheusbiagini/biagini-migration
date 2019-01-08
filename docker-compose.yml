@@ -1,0 +1,36 @@
+version: '3.5'
+
+services:
+  mysql:
+    image: mysql:5.7
+    env_file:
+    - docker.env
+    volumes:
+    - database:/var/lib/mysql
+    ports:
+    - 3306:3306
+    networks:
+    - biaginiMigration_default
+
+  app:
+    image: matheusbiagini/docker-lamp:dev
+    volumes:
+    - ./:/var/www
+    links:
+    - mysql
+    depends_on:
+    - mysql
+    ports:
+    - 80:80
+    environment:
+      PHP_IDE_CONFIG: "serverName=biaginimigration.dev"
+    networks:
+    - biaginiMigration_default
+
+volumes:
+  database:
+
+networks:
+  biaginiMigration_default:
+    driver: bridge
+    name: biaginiMigration_default
