@@ -25,7 +25,7 @@ $pathMigrations = "/path/";
 $namespace = 'PathNamespace';
 
 #Here it can be customized because the configuration class expects an instance of the PDO
-$pdo = new PDO('dblib:host=your_hostname;dbname=your_db;charset=UTF-8', $user, $pass);
+$pdo = new PDO('mysql:host=your_hostname;dbname=your_db;charset=UTF-8', $user, $pass);
 
 #Creating the migration command console
 $migration = new Migration(new Configuration($pdo, $pathMigrations, $namespace));
