@@ -1,5 +1,5 @@
 {
-  "name": "matheusbiagini/AliceMigration",
+  "name": "matheusbiagini/biagini-migration",
   "description": "Data migration mechanism for php using dbal do doctrine with pdo, schema and queryBuilder",
   "type": "library",
   "keywords": [
