@@ -7,6 +7,7 @@ namespace AliceMigration\Management\Service;
 use AliceMigration\Management\Configuration\Configuration;
 use AliceMigration\Management\Database\Version;
 use AliceMigration\Management\Exception\ErrorCreatingMigration;
+use AliceMigration\Resource\Template;
 
 class CreateMigration
 {
@@ -35,7 +36,7 @@ class CreateMigration
     private function template(string $className, string $namespace) : string
     {
         return sprintf(
-            file_get_contents(getcwd().'/src/Resource/Template.class'),
+            Template::getTemplate(),
             $namespace,
             $className
         );
