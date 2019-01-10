@@ -26,8 +26,8 @@
   "require": {
     "php": "^7.1",
     "symfony/console": "^3.4",
-    "symfony/config": "v2.6.6",
-    "symfony/yaml": "v2.6.6",
+    "symfony/config": "^3.4",
+    "symfony/yaml": "^3.4",
     "doctrine/orm": "2.*"
   },
   "require-dev": {
